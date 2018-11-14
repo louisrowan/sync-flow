@@ -130,10 +130,6 @@ _auto.prototype.run = function() {
 
         runFunc(step, data, callback)
 
-        // step.function({
-        //   data,
-        //   cb: callback
-        // });
       }
     });
 
@@ -146,10 +142,8 @@ _auto.prototype.run = function() {
 
 const runFunc = (step, data, callback) => {
 
-  console.log('in run func for', step.name)
 
-
-  const filePath = `${step.name}.js`;
+  const filePath = `.${step.name}`;
 
 
   const contents = `${step.function.toString()}
@@ -164,17 +158,11 @@ const runFunc = (step, data, callback) => {
     }
 
     input.cb = cb;
-  ${step.function.name}(input)
-
-});
-
-  `
+    ${step.function.name}(input)
+  });`
 
 
-  fs.writeFileSync(path.resolve(__dirname, filePath), contents)
-
-
-
+  fs.writeFileSync(path.resolve(__dirname, filePath), contents);
 
     const input = {
       data: data
@@ -193,6 +181,7 @@ const runFunc = (step, data, callback) => {
     compute.on('message', result => {
       const err = result[0];
       const res = result[1]
+      fs.unlinkSync(filePath);
       console.log()
       console.log('Long computation err', err)
         console.log('and result', res)
