@@ -1,6 +1,6 @@
 'use strict';
 
-const auto = require( './auto' );
+const auto = require( './lib/auto' );
 
 
 module.exports.auto = auto;

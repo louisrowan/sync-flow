@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "5.x.x"
+    "eslint": "5.x.x",
+    "lab": "14.x.x"
   }
 }
