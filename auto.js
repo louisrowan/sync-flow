@@ -53,11 +53,11 @@ _auto.prototype.configureArgs = function() {
 
   if ( !this.cb ) {
     this.cb = this.options;
-    this.options = {}
+    this.options = {};
   }
 
   this.validate();
-}
+};
 
 
 _auto.prototype.validate = function() {
@@ -91,7 +91,7 @@ _auto.prototype.validate = function() {
   } );
 
   this.addDependencies();
-}
+};
 
 
 _auto.prototype.addDependencies = function() {
@@ -117,7 +117,7 @@ _auto.prototype.addDependencies = function() {
       value.forEach( element => {
 
         if ( typeof element === 'string' ) {
-          dependencies.push( element )
+          dependencies.push( element );
         }
 
         else {
@@ -137,7 +137,7 @@ _auto.prototype.addDependencies = function() {
   } );
 
   this.addListeners();
-}
+};
 
 
 _auto.prototype.addListeners = function() {
@@ -148,11 +148,12 @@ _auto.prototype.addListeners = function() {
 
       const dependency = this.unresolved.find( s => s.name === dependencyName );
       dependency.listeners.push( step.name );
-    } )
+    } );
+
   } );
 
   this.writeToFile();
-}
+};
 
 
 _auto.prototype.writeToFile = function() {
@@ -186,7 +187,7 @@ process.on( 'message', message => {
 
   } );
 
-  processText += `
+  processText += `;
 } );`
 
   this.tmpFileContents = functionText + processText;
@@ -194,7 +195,7 @@ process.on( 'message', message => {
   fs.writeFileSync( path.resolve( __dirname, this.tmpFile ), this.tmpFileContents );
 
   this.addFileDeletionHooks();
-}
+};
 
 
 _auto.prototype.addFileDeletionHooks = function() {
@@ -210,7 +211,7 @@ _auto.prototype.addFileDeletionHooks = function() {
   } );
 
   this._runAll();
-}
+};
 
 
 _auto.prototype._runAll = function() {
@@ -269,7 +270,7 @@ _auto.prototype._runAll = function() {
       } );
 
       if ( canRun ) {
-        runFunctions.push( step.name )
+        runFunctions.push( step.name );
         step.run( tmpFilePath, results, callback );
       }
 
@@ -277,7 +278,7 @@ _auto.prototype._runAll = function() {
   }
 
   runUnresolved();
-}
+};
 
 
 _auto.prototype.finish = function( err, results, taskMeta ) {
@@ -290,7 +291,7 @@ _auto.prototype.finish = function( err, results, taskMeta ) {
   }
   this.deleteTmpFile();
   this.cb( err, results, this.meta );
-}
+};
 
 
 _auto.prototype.deleteTmpFile = function() {
@@ -304,9 +305,9 @@ _auto.prototype.deleteTmpFile = function() {
     this.tmpFileDeleted = true;
   }
   catch( err ) {
-    console.log( 'unlink err', err )
+    console.log( 'unlink err', err );
   }
-}
+};
 
 
 module.exports = auto;

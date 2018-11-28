@@ -14,7 +14,7 @@ function step( { name, func, dependencies, listeners } ) {
 
 step.prototype.run = function( filePath, results, cb ) {
 
-  const strResults = JSON.stringify( { data: results } )
+  const strResults = JSON.stringify( { data: results } );
 
   const compute = child_process.fork( filePath, [ strResults ] );
 
@@ -37,7 +37,7 @@ step.prototype.run = function( filePath, results, cb ) {
   const startTime = Date.now();
 
   compute.send( this.name );
-}
+};
 
 
 module.exports = step;
