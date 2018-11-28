@@ -45,10 +45,16 @@ sync.auto({
   first: return2After5Seconds,
   second: return20After4Seconds,
   third: ['first', 'second', returnInputPlus2Inputfter2Seconds]
-}, (err, result) => {
+}, (err, result, meta) => {
 
   console.log('in end and result', result)
   console.log('err is', err)
   console.log('time', Date.now() - start)
-  process.exit()
+  console.log( 'meta', meta )
+
+process._getActiveHandles().forEach( handle => {
+
+  // console.log( handle )
+} )
+
 })
